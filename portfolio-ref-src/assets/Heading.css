@@ -1,0 +1,26 @@
+.heading-container {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.moving-text {
+  font-size: 10rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  display: inline-block;
+  animation: moveText 20s linear infinite;
+}
+
+@keyframes moveText {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

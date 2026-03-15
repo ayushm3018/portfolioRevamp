@@ -1,0 +1,10 @@
+.body{
+  background-color: black;
+}
+
+#particles canvas{
+  z-index: -1;
+  height: auto;
+  width: auto;
+  position: absolute;
+}

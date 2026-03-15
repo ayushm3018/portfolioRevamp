@@ -1,0 +1,67 @@
+/* Modern Navbar Styles */
+.navbar {
+  position: fixed;
+  top: 5%;
+  left: 49%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 15px 30px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.nav-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  padding: 5px 15px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #00aaff;
+}
+
+.navbar:hover .nav-links {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar:hover {
+  padding: 20px 50px;
+  border-width: 4px;
+}
+
+.nav-name:hover {
+  border-width: 4px;
+  padding: 7px 20px;
+}

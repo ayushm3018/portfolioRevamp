@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  background-color: black;
+  color: white;
+}
+
+/* #particles canvas{
+  z-index: -1;
+  height: auto;
+  width: auto;
+  position: absolute;
+} */
