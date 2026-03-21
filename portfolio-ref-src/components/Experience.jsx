@@ -1,137 +1,353 @@
 "use client";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const ExperienceCard = ({ title, company, period, description, technologies, achievements, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative mb-8 group"
-    >
-      <div
-        className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] p-8 rounded-xl border border-[#333] hover:border-[#7042f8] transition-all duration-300"
-        style={{
-          transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.transform = "translateY(-8px)";
-          e.currentTarget.style.boxShadow = "0 25px 50px rgba(112, 66, 248, 0.15)";
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.3)";
-        }}
-      >
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-            <p className="text-[#b49bff] font-semibold text-lg">{company}</p>
-          </div>
-          <span className="text-gray-400 text-sm whitespace-nowrap ml-4">{period}</span>
-        </div>
+gsap.registerPlugin(ScrollTrigger);
 
-        <p className="text-gray-300 mb-6 leading-relaxed">{description}</p>
+const hiddenMessages = [
+  // Card 1 — both rows slightly offset vertically from each other
+  [
+    { text: "still googling css flexbox 🤫", x: "5%",  y: "10%" },
+    { text: "works on my machine tho",        x: "53%", y: "22%" },
+    { text: "// TODO: fix this later",        x: "5%",  y: "65%" },
+    { text: "what even is z-index 😭",        x: "53%", y: "76%" },
+  ],
+  // Card 2 — diagonal zigzag top-left → bottom-right
+  [
+    { text: "it works on my machine ¯\\_(ツ)_/¯", x: "5%",  y: "8%"  },
+    { text: "have you tried turning it off?",      x: "53%", y: "32%" },
+    { text: "undefined is not a function 😅",      x: "5%",  y: "55%" },
+    { text: "git commit -m 'pls work'",            x: "53%", y: "76%" },
+  ],
+  // Card 3 — top-right and bottom-left heavy, opposite of card 1
+  [
+    { text: "stackoverflow saved me 247 times", x: "53%", y: "10%" },
+    { text: "git commit -m 'final_FINAL_v3'",   x: "5%",  y: "28%" },
+    { text: "it's not a bug, it's a feature",   x: "53%", y: "62%" },
+    { text: "console.log('why')",               x: "5%",  y: "78%" },
+  ],
+];
 
-        <div className="space-y-4">
-          <div>
-            <h4 className="text-sm font-semibold text-[#b49bff] mb-2">Key Achievements</h4>
-            <ul className="space-y-2">
-              {achievements.map((achievement, idx) => (
-                <li key={idx} className="text-gray-400 text-sm flex items-start gap-2">
-                  <span className="text-[#7042f8] mt-1">→</span>
-                  {achievement}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-semibold text-[#b49bff] mb-2">Technologies</h4>
-            <div className="flex flex-wrap gap-2">
-              {technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="px-3 py-1 bg-[#7042f8]/20 text-[#b49bff] text-xs rounded-full border border-[#7042f8]/30 hover:border-[#7042f8] transition-colors duration-200"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+const experiences = [
+  {
+    title: "Senior Frontend Developer",
+    company: "Creative Digital Studio",
+    period: "2023 - Present",
+    description:
+      "Leading high-performance web apps with modern React architecture. Spearheaded migration to Next.js and implemented advanced optimization techniques.",
+    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    achievements: [
+      "Improved page load time by 45% through code splitting",
+      "Built reusable component library used across 10+ projects",
+      "Mentored 3 junior developers on modern React patterns",
+    ],
+  },
+  {
+    title: "Full Stack Developer",
+    company: "Tech Solutions Co.",
+    period: "2021 - 2023",
+    description:
+      "Built full-stack applications using the MERN stack, implementing complex features and ensuring seamless frontend–backend integration.",
+    technologies: ["React", "Node.js", "MongoDB", "Express.js", "PostgreSQL"],
+    achievements: [
+      "Built 5 production apps serving 50,000+ active users",
+      "Real-time WebSocket features reducing server load by 30%",
+      "Automated deployments cutting release time from 4h to 15min",
+    ],
+  },
+  {
+    title: "Junior Web Developer",
+    company: "Startup Hub Inc.",
+    period: "2020 - 2021",
+    description:
+      "Started my development journey building responsive web apps and participating in agile cycles.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Firebase"],
+    achievements: [
+      "Completed 8 projects from concept to deployment",
+      "Expertise in responsive design and cross-browser compatibility",
+      "Contributed to open-source and client portfolio sites",
+    ],
+  },
+];
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: "Senior Frontend Developer",
-      company: "Creative Digital Studio",
-      period: "2023 - Present",
-      description:
-        "Leading the development of high-performance web applications with modern React architecture. Spearheaded the migration to Next.js and implemented advanced optimization techniques.",
-      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      achievements: [
-        "Improved page load time by 45% through code splitting and lazy loading",
-        "Built reusable component library used across 10+ projects",
-        "Mentored 3 junior developers on best practices and modern React patterns",
-      ],
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Tech Solutions Co.",
-      period: "2021 - 2023",
-      description:
-        "Developed full-stack web applications using the MERN stack. Worked on both frontend and backend systems, implementing complex features and ensuring seamless integration.",
-      technologies: ["React", "Node.js", "MongoDB", "Express.js", "PostgreSQL"],
-      achievements: [
-        "Built 5 production applications serving 50,000+ active users",
-        "Implemented real-time features using WebSockets reducing load by 30%",
-        "Automated deployment pipeline reducing release time from 4 hours to 15 minutes",
-      ],
-    },
-    {
-      title: "Junior Web Developer",
-      company: "Startup Hub Inc.",
-      period: "2020 - 2021",
-      description:
-        "Started my development journey building responsive web applications. Learned full-stack development and participated in agile development cycles.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "React", "Firebase"],
-      achievements: [
-        "Completed 8 successful projects from concept to deployment",
-        "Gained expertise in responsive design and cross-browser compatibility",
-        "Contributed to open-source projects and built portfolio sites for clients",
-      ],
-    },
-  ];
+  const sectionRef = useRef(null);
+  const lineRef = useRef(null);
+  const cardRefs = useRef([]);
+  const dotRefs = useRef([]);
+  const dotRingRefs = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Draw the vertical line as you scroll through the section
+      gsap.fromTo(
+        lineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          transformOrigin: "top center",
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            scrub: 1.5,
+            start: "top 50%",
+            end: "bottom 70%",
+          },
+        }
+      );
+
+      // Each card activates when it enters view
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        const dot = dotRefs.current[i];
+        const ring = dotRingRefs.current[i];
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 65%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // Dot fills + ring pulses
+        tl.to(dot, { backgroundColor: "#7042f8", duration: 0.3 }, 0)
+          .to(ring, { borderColor: "#7042f8", scale: 1.5, opacity: 0, duration: 0.6 }, 0)
+          // Card glows and fades in
+          .to(
+            card,
+            {
+              opacity: 1,
+              borderColor: "#7042f8",
+              boxShadow: "0 0 30px rgba(112,66,248,0.25), 0 20px 40px rgba(0,0,0,0.4)",
+              duration: 0.5,
+            },
+            0.1
+          );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="experience" className="pt-8 pb-20 bg-black relative overflow-hidden">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <h2 className="text-5xl font-bold text-center mb-4 text-white">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7042f8] to-[#b49bff]">Experience</span>
-          </h2>
-          <p className="text-center text-gray-400">
-            Building innovative solutions through diverse roles and technologies
-          </p>
-        </motion.div>
+    <section ref={sectionRef} id="experience" className="bg-black py-20 px-4">
+      {/* Heading */}
+      <div className="text-center mb-20">
+        <h2 className="text-5xl font-bold text-white">
+          My{" "}
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-[#7042f8] to-[#b49bff]">
+            Experience
+          </span>
+        </h2>
+      </div>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <ExperienceCard key={index} {...exp} index={index} />
-          ))}
+      {/* Timeline */}
+      <div className="relative max-w-5xl mx-auto">
+
+        {/* Vertical line */}
+        <div
+          className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+          style={{ width: "2px", background: "#1a1a1a" }}
+        >
+          <div
+            ref={lineRef}
+            style={{
+              width: "100%",
+              height: "100%",
+              background: "linear-gradient(to bottom, #7042f8, #b49bff)",
+              transformOrigin: "top center",
+              scaleY: 0,
+            }}
+          />
         </div>
+
+        {/* Cards */}
+        {experiences.map((exp, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <div
+              key={index}
+              className="relative flex items-center mb-24"
+              style={{ justifyContent: isLeft ? "flex-start" : "flex-end" }}
+            >
+              {/* Card */}
+              <div
+                ref={el => (cardRefs.current[index] = el)}
+                style={{
+                  width: "44%",
+                  background: `hsl(${260 - index * 6}, 14%, ${8 + index * 1.5}%)`,
+                  border: "1px solid #2a2a2a",
+                  borderRadius: "1rem",
+                  padding: "1.75rem",
+                  opacity: 0.3,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
+                  transition: "border-color 0.3s ease",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                {/* Ghost number */}
+                <span
+                  style={{
+                    position: "absolute",
+                    top: "1rem",
+                    right: "1.5rem",
+                    fontSize: "4rem",
+                    fontWeight: "bold",
+                    color: "rgba(112,66,248,0.07)",
+                    lineHeight: 1,
+                    userSelect: "none",
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <p className="text-[#7042f8] text-xs font-semibold uppercase tracking-widest mb-2">
+                  {exp.period}
+                </p>
+                <h3 className="text-xl font-bold text-white mb-1">{exp.title}</h3>
+                <p className="text-[#b49bff] text-sm font-semibold mb-4">{exp.company}</p>
+                <p className="text-gray-400 text-sm leading-relaxed mb-4">{exp.description}</p>
+
+                <ul className="space-y-1 mb-4">
+                  {exp.achievements.map((a, idx) => (
+                    <li key={idx} className="text-gray-500 text-xs flex items-start gap-2">
+                      <span className="text-[#7042f8] mt-0.5">→</span>
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2 py-0.5 bg-[#7042f8]/10 text-[#b49bff] text-xs rounded-full border border-[#7042f8]/20"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Timeline dot */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{ zIndex: 10 }}
+              >
+                {/* Pulse ring */}
+                <div
+                  ref={el => (dotRingRefs.current[index] = el)}
+                  style={{
+                    position: "absolute",
+                    inset: "-6px",
+                    borderRadius: "50%",
+                    border: "2px solid #333",
+                    scale: 1,
+                    opacity: 1,
+                  }}
+                />
+                {/* Dot */}
+                <div
+                  ref={el => (dotRefs.current[index] = el)}
+                  style={{
+                    width: "14px",
+                    height: "14px",
+                    borderRadius: "50%",
+                    backgroundColor: "#2a2a2a",
+                    border: "2px solid #444",
+                  }}
+                />
+              </div>
+
+              {/* Hidden messages scattered on opposite side */}
+              <div
+                style={{
+                  position: "absolute",
+                  width: "44%",
+                  height: "100%",
+                  left: isLeft ? "56%" : "0%",
+                  top: 0,
+                  cursor: "default",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.querySelectorAll(".secret-msg").forEach((el, i) => {
+                    el.style.transitionDelay = `${i * 0.08}s`;
+                    el.style.opacity = "1";
+                    el.style.filter = "blur(0px)";
+                  });
+                  e.currentTarget.querySelector(".hint").style.opacity = "0";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.querySelectorAll(".secret-msg").forEach(el => {
+                    el.style.transitionDelay = "0s";
+                    el.style.opacity = "0";
+                    el.style.filter = "blur(8px)";
+                  });
+                  e.currentTarget.querySelector(".hint").style.opacity = "1";
+                }}
+              >
+                {/* Hint label */}
+                <span
+                  className="hint"
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    fontSize: "0.6rem",
+                    color: "rgba(112,66,248,0.3)",
+                    letterSpacing: "0.25em",
+                    textTransform: "uppercase",
+                    transition: "opacity 0.3s ease",
+                    pointerEvents: "none",
+                  }}
+                >
+                  psst...
+                </span>
+
+                {/* Scattered messages */}
+                {hiddenMessages[index].map((msg, i) => (
+                  <span
+                    key={i}
+                    className="secret-msg"
+                    style={{
+                      position: "absolute",
+                      left: msg.x,
+                      top: msg.y,
+                      width: "42%",
+                      fontSize: "0.85rem",
+                      fontWeight: "600",
+                      color: "rgba(180,155,255,0.85)",
+                      lineHeight: "1.5",
+                      opacity: 0,
+                      filter: "blur(8px)",
+                      transition: "opacity 0.4s ease, filter 0.4s ease",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    {msg.text}
+                  </span>
+                ))}
+              </div>
+
+              {/* Horizontal connector from dot to card */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: isLeft ? "50%" : "44%",
+                  width: "6%",
+                  height: "1px",
+                  background: "#2a2a2a",
+                  transform: "translateY(-50%)",
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
     </section>
   );
