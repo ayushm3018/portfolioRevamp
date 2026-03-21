@@ -79,8 +79,8 @@ export default function Div2() {
     <>
       <div
         style={{
-          height: "100vh",
-          padding: "20px",
+          minHeight: "60vh",
+          padding: "60px 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
@@ -121,8 +121,8 @@ export default function Div2() {
 
       <div
         style={{
-          height: "100vh",
-          padding: "20px",
+          minHeight: "60vh",
+          padding: "60px 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",

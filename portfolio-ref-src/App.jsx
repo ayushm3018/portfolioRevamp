@@ -15,7 +15,7 @@ function App() {
         <div style={{ position: "sticky", top: 0, height: "100vh", zIndex: 1 }}>
           <SplineScene />
         </div>
-        <div style={{ position: "relative", zIndex: 2 }}>
+        <div style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
           <Div2 />
         </div>
       </div>
