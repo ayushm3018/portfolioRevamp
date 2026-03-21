@@ -60,7 +60,7 @@ export default function Div2() {
               trigger: element,
               start: "top 90%",
               end: "bottom 10%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none none",
             },
           }
         );

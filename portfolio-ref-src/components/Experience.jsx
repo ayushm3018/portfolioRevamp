@@ -1,30 +1,28 @@
 "use client";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const ExperienceCard = ({ title, company, period, description, technologies, achievements, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="relative mb-8 group"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-[#7042f8]/20 to-[#4c1d95]/20 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
-
-      <motion.div
-        className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] p-8 rounded-xl border border-[#333] hover:border-[#7042f8] transition-all duration-300 backdrop-blur-sm"
-        animate={{
-          y: isHovered ? -8 : 0,
-          boxShadow: isHovered
-            ? "0 25px 50px rgba(112, 66, 248, 0.15)"
-            : "0 10px 30px rgba(0, 0, 0, 0.3)",
+      <div
+        className="relative bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] p-8 rounded-xl border border-[#333] hover:border-[#7042f8] transition-all duration-300"
+        style={{
+          transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
         }}
-        transition={{ duration: 0.3 }}
+        onMouseEnter={e => {
+          e.currentTarget.style.transform = "translateY(-8px)";
+          e.currentTarget.style.boxShadow = "0 25px 50px rgba(112, 66, 248, 0.15)";
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.3)";
+        }}
       >
         <div className="flex items-start justify-between mb-4">
           <div>
@@ -63,7 +61,7 @@ const ExperienceCard = ({ title, company, period, description, technologies, ach
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -117,6 +115,7 @@ const Experience = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >

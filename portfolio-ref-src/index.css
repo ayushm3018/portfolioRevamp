@@ -1,11 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
 
 body{
   background-color: black;
   color: white;
+}
+
+@keyframes rotateCube {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to   { transform: rotateX(360deg) rotateY(360deg); }
 }
 
 /* #particles canvas{
@@ -14,3 +16,4 @@ body{
   width: auto;
   position: absolute;
 } */
+ 

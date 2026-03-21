@@ -2,17 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const Hero3D = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState([]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   useEffect(() => {
     const newParticles = Array.from({ length: 50 }).map(() => ({
@@ -24,9 +14,6 @@ const Hero3D = () => {
     }));
     setParticles(newParticles);
   }, []);
-
-  const rotateX = (mousePosition.y - window.innerHeight / 2) * 0.02;
-  const rotateY = (mousePosition.x - window.innerWidth / 2) * 0.02;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -75,83 +62,6 @@ const Hero3D = () => {
         ))}
       </div>
 
-      {/* Floating 3D cube */}
-      <motion.div
-        className="absolute w-64 h-64 right-20 top-1/2 -translate-y-1/2"
-        style={{
-          perspective: "1000px",
-        }}
-        animate={{
-          rotateX: rotateX,
-          rotateY: rotateY,
-        }}
-        transition={{ type: "spring", damping: 10, mass: 0.5 }}
-      >
-        <motion.div
-          className="w-full h-full relative"
-          animate={{ rotateX: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {/* Front face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#7042f8] to-[#4c1d95] border-2 border-[#b49bff]/30 flex items-center justify-center"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "translateZ(128px)",
-            }}
-          >
-            <span className="text-4xl font-bold text-white">3D</span>
-          </div>
-
-          {/* Back face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#4c1d95] to-[#2d0a5e] border-2 border-[#b49bff]/30 flex items-center justify-center"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "translateZ(-128px) rotateY(180deg)",
-            }}
-          >
-            <span className="text-4xl font-bold text-white">DEV</span>
-          </div>
-
-          {/* Right face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#5a38a8] to-[#7042f8] border-2 border-[#b49bff]/30"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateY(90deg) translateZ(128px)",
-            }}
-          />
-
-          {/* Left face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#3a1570] to-[#5a38a8] border-2 border-[#b49bff]/30"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateY(-90deg) translateZ(128px)",
-            }}
-          />
-
-          {/* Top face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#7042f8] to-[#5a38a8] border-2 border-[#b49bff]/30"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateX(90deg) translateZ(128px)",
-            }}
-          />
-
-          {/* Bottom face */}
-          <div
-            className="absolute w-full h-full bg-gradient-to-br from-[#4c1d95] to-[#7042f8] border-2 border-[#b49bff]/30"
-            style={{
-              backfaceVisibility: "hidden",
-              transform: "rotateX(-90deg) translateZ(128px)",
-            }}
-          />
-        </motion.div>
-      </motion.div>
 
       {/* Content */}
       <motion.div
