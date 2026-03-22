@@ -42,16 +42,24 @@ const ParticlesBackground = (props) => {
             duration: 15,
           },
           grab: {
-            distance: 150,
+            distance: 200,
+            links: {
+              opacity: 1,
+              color: "#b49bff",
+            },
           },
         },
       },
       particles: {
         color: {
-          value: "#FFFFFF",
+          value: ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#7042f8", "#b49bff"],
         },
         links: {
-          enable: false,
+          enable: true,
+          distance: 150,
+          color: "#b49bff",
+          opacity: 0.5,
+          width: 1.2,
         },
         move: {
           direction: "none",
@@ -68,10 +76,10 @@ const ParticlesBackground = (props) => {
             enable: true,
             area: 800,
           },
-          value: 75,
+          value: 130,
         },
         opacity: {
-          value: 0.5,
+          value: { min: 0.3, max: 0.7 },
         },
         shape: {
           type: "circle",
