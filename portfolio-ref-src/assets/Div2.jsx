@@ -96,7 +96,12 @@ export default function Div2() {
             }}
           >
             <span style={{ color: "rgba(255, 255, 255, 0.5)" }}> Hi, I'm </span>{" "}
-            <span style={{ color: "white" }}>Ayush Mishra</span>
+            <span style={{
+              background: "linear-gradient(to right, #7042f8, #b49bff)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>Ayush Mishra</span>
           </h1>
           <p
             ref={introTextRef}
@@ -138,8 +143,13 @@ export default function Div2() {
             }}
           >
             <span style={{ color: "rgba(255, 255, 255, 0.5)" }}>I'm a </span>
-            <span style={{ color: "white" }}>{displayText}</span>
-            <span className="cursor">|</span>
+            <span style={{
+              background: "linear-gradient(to right, #7042f8, #b49bff)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>{displayText}</span>
+            <span className="cursor" style={{ color: "#7042f8" }}>|</span>
           </h1>
           <p
             ref={secondParaRef}

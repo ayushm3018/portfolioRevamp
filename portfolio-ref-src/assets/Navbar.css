@@ -8,9 +8,9 @@
   color: rgba(255, 255, 255, 0.5);
   padding: 15px 30px;
   border-radius: 50px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out, border-color 0.4s ease, box-shadow 0.4s ease;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -18,6 +18,31 @@
   gap: 20px;
   z-index: 1000;
   backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+/* Gradient sweep layer */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50px;
+  background: linear-gradient(to right, #7042f8, #b49bff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.18;
+  z-index: 0;
+}
+
+.navbar:hover::before {
+  transform: scaleX(1);
+}
+
+.navbar:hover {
+  padding: 20px 50px;
+  border-color: #7042f8;
+  box-shadow: 0 0 18px rgba(112, 66, 248, 0.45), 0 0 40px rgba(112, 66, 248, 0.2);
 }
 
 .nav-name {
@@ -37,10 +62,12 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out, visibility 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-links li a {
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -48,7 +75,7 @@
 }
 
 .nav-links li a:hover {
-  color: #00aaff;
+  color: #b49bff;
 }
 
 .navbar:hover .nav-links {
@@ -56,10 +83,6 @@
   visibility: visible;
 }
 
-.navbar:hover {
-  padding: 20px 50px;
-  border-width: 4px;
-}
 
 .nav-name:hover {
   border-width: 4px;
