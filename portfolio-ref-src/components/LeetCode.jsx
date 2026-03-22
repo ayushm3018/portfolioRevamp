@@ -281,7 +281,13 @@ const LeetCode = () => {
           >
             {/* Row 1 — problems + contest */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+              >
                 <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-4">Problems Solved</p>
                 <div className="flex items-end gap-3 mb-6">
                   <span className="text-6xl font-bold text-white">{total}</span>
@@ -290,20 +296,32 @@ const LeetCode = () => {
                 <StatBar label="Easy"   count={easy}   total={600}  color="#22c55e" />
                 <StatBar label="Medium" count={medium} total={1300} color="#f59e0b" />
                 <StatBar label="Hard"   count={hard}   total={500}  color="#ef4444" />
-              </div>
+              </motion.div>
 
-              <div className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+              >
                 <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-4">Contest Rating</p>
                 <div className="flex items-end gap-3 mb-4">
                   <span className="text-6xl font-bold text-white">{Math.round(contest?.rating ?? 0)}</span>
                   <span className="text-gray-600 text-sm mb-2">rating</span>
                 </div>
                 <RatingChart history={history} />
-              </div>
+              </motion.div>
             </div>
 
             {/* Row 2 — heatmap with year switcher */}
-            <div className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+              className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+            >
               {/* Year tabs */}
               <div className="flex gap-2 mb-5">
                 {activeYears.map(y => (
@@ -339,7 +357,7 @@ const LeetCode = () => {
                   year={activeYear}
                 />
               )}
-            </div>
+            </motion.div>
 
             {/* Row 3 — key stats */}
             <div className="grid grid-cols-3 gap-4">
