@@ -4,6 +4,7 @@ import Navbar from "./assets/Navbar";
 import ParticlesBackground from "./assets/ParticlesBackground";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
+import LeetCode from "./components/LeetCode";
 import SplineScene from "./assets/SplineScene"; // Add this import
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <ParticlesBackground id="particles" />
       <Skills />
       <Experience />
+      <LeetCode />
     </>
   );
 }

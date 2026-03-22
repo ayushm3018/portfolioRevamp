@@ -77,6 +77,62 @@ const Experience = () => {
   const cardRefs = useRef([]);
   const dotRefs = useRef([]);
   const dotRingRefs = useRef([]);
+  const msgRefs = useRef(hiddenMessages.map(() => []));
+  const msgContainerRefs = useRef([]);
+  const timerRefs = useRef([]);
+  const isHoveredRefs = useRef(hiddenMessages.map(() => false));
+  const cycleRunning = useRef(hiddenMessages.map(() => false));
+
+  const stopCycle = (cardIndex) => {
+    cycleRunning.current[cardIndex] = false;
+    clearTimeout(timerRefs.current[cardIndex]);
+    msgRefs.current[cardIndex].forEach(m => {
+      if (m) { m.style.opacity = "0"; m.style.filter = "blur(8px)"; }
+    });
+  };
+
+  const startCycle = (cardIndex) => {
+    if (cycleRunning.current[cardIndex]) return;
+    cycleRunning.current[cardIndex] = true;
+    const msgs = msgRefs.current[cardIndex];
+    const shuffled = [...Array(msgs.length).keys()].sort(() => Math.random() - 0.5);
+    let i = 0;
+
+    const showNext = () => {
+      if (!cycleRunning.current[cardIndex] || isHoveredRefs.current[cardIndex]) return;
+      const msg = msgs[shuffled[i % shuffled.length]];
+      i++;
+      if (!msg) return;
+      msg.style.opacity = "1";
+      msg.style.filter = "blur(0px)";
+      timerRefs.current[cardIndex] = setTimeout(() => {
+        msg.style.opacity = "0";
+        msg.style.filter = "blur(8px)";
+        timerRefs.current[cardIndex] = setTimeout(showNext, 600);
+      }, 2200);
+    };
+
+    showNext();
+  };
+
+  useEffect(() => {
+    const observers = msgContainerRefs.current.map((container, i) => {
+      if (!container) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) startCycle(i);
+          else stopCycle(i);
+        },
+        { threshold: 0.3 }
+      );
+      observer.observe(container);
+      return observer;
+    });
+    return () => {
+      observers.forEach(o => o && o.disconnect());
+      timerRefs.current.forEach(t => clearTimeout(t));
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -169,7 +225,7 @@ const Experience = () => {
           return (
             <div
               key={index}
-              className="relative flex items-center mb-24"
+              className="relative flex items-center mb-16"
               style={{ justifyContent: isLeft ? "flex-start" : "flex-end" }}
             >
               {/* Card */}
@@ -264,6 +320,7 @@ const Experience = () => {
 
               {/* Hidden messages scattered on opposite side */}
               <div
+                ref={el => (msgContainerRefs.current[index] = el)}
                 style={{
                   position: "absolute",
                   width: "44%",
@@ -272,53 +329,38 @@ const Experience = () => {
                   top: 0,
                   cursor: "default",
                 }}
-                onMouseEnter={e => {
-                  e.currentTarget.querySelectorAll(".secret-msg").forEach((el, i) => {
+                onMouseEnter={() => {
+                  isHoveredRefs.current[index] = true;
+                  clearTimeout(timerRefs.current[index]);
+                  msgRefs.current[index].forEach((el, i) => {
+                    if (!el) return;
                     el.style.transitionDelay = `${i * 0.08}s`;
                     el.style.opacity = "1";
                     el.style.filter = "blur(0px)";
                   });
-                  e.currentTarget.querySelector(".hint").style.opacity = "0";
                 }}
-                onMouseLeave={e => {
-                  e.currentTarget.querySelectorAll(".secret-msg").forEach(el => {
+                onMouseLeave={() => {
+                  isHoveredRefs.current[index] = false;
+                  msgRefs.current[index].forEach(el => {
+                    if (!el) return;
                     el.style.transitionDelay = "0s";
                     el.style.opacity = "0";
                     el.style.filter = "blur(8px)";
                   });
-                  e.currentTarget.querySelector(".hint").style.opacity = "1";
+                  setTimeout(() => startCycle(index), 800);
                 }}
               >
-                {/* Hint label */}
-                <span
-                  className="hint"
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    fontSize: "0.6rem",
-                    color: "rgba(112,66,248,0.3)",
-                    letterSpacing: "0.25em",
-                    textTransform: "uppercase",
-                    transition: "opacity 0.3s ease",
-                    pointerEvents: "none",
-                  }}
-                >
-                  psst...
-                </span>
-
                 {/* Scattered messages */}
                 {hiddenMessages[index].map((msg, i) => (
                   <span
                     key={i}
-                    className="secret-msg"
+                    ref={el => { if (el) msgRefs.current[index][i] = el; }}
                     style={{
                       position: "absolute",
                       left: msg.x,
                       top: msg.y,
                       width: "42%",
-                      fontSize: "0.85rem",
+                      fontSize: "1rem",
                       fontWeight: "600",
                       color: "rgba(180,155,255,0.85)",
                       lineHeight: "1.5",
