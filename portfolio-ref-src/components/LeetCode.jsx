@@ -308,13 +308,13 @@ const LeetCode = () => {
               </motion.div>
             </div>
 
-            {/* Row 2 — heatmap with year switcher */}
+            {/* Row 2 — heatmap with year switcher (hidden on mobile) */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
+              className="hidden md:block rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
             >
               {/* Year tabs */}
               <div className="flex gap-2 mb-5">

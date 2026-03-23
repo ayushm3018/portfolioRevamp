@@ -178,7 +178,13 @@ export default function Projects() {
             viewport={{ once: false }}
             transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
             whileHover={{ y: -6 }}
-            onClick={() => setActiveProject(project)}
+            onClick={() => {
+              if (window.innerWidth < 768) {
+                window.open(project.url, "_blank", "noopener,noreferrer");
+              } else {
+                setActiveProject(project);
+              }
+            }}
             style={{
               background: "hsl(260,14%,8%)",
               border: "1px solid #2a2a2a",

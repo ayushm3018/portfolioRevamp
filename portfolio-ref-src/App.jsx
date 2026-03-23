@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Div2 from "./assets/Div2";
 import Heading from "./assets/Heading";
 import Navbar from "./assets/Navbar";
@@ -6,21 +7,42 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import LeetCode from "./components/LeetCode";
-import SplineScene from "./assets/SplineScene"; // Add this import
+import SplineScene from "./assets/SplineScene";
 
 function App() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+
   return (
     <>
       <Navbar />
       <Heading />
-      <div>
-        <div style={{ position: "sticky", top: 0, height: "100vh", zIndex: 1 }}>
-          <SplineScene />
-        </div>
-        <div style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
+
+      {isMobile ? (
+        /* Mobile: Spline fills screen then scrolls away naturally */
+        <>
+          <div style={{ height: "100vh" }}>
+            <SplineScene mobile />
+          </div>
           <Div2 />
+        </>
+      ) : (
+        /* Desktop: Spline is sticky, Div2 overlays on scroll */
+        <div>
+          <div style={{ position: "sticky", top: 0, height: "100vh", zIndex: 1 }}>
+            <SplineScene />
+          </div>
+          <div style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
+            <Div2 />
+          </div>
         </div>
-      </div>
+      )}
+
       <ParticlesBackground id="particles" />
       <Skills />
       <Projects />

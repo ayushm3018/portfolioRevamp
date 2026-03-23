@@ -90,7 +90,7 @@ export default function Div2() {
           <h1
             ref={heading1Ref}
             style={{
-              fontSize: "3rem",
+              fontSize: "clamp(1.6rem, 4vw, 3rem)",
               marginBottom: "1rem",
               opacity: 0,
             }}
@@ -106,7 +106,7 @@ export default function Div2() {
           <p
             ref={introTextRef}
             style={{
-              fontSize: "2.2rem",
+              fontSize: "clamp(1rem, 2.5vw, 2.2rem)",
               lineHeight: "1.0",
               color: "rgba(255, 255, 255, 0.5)",
               opacity: 0,
@@ -137,7 +137,7 @@ export default function Div2() {
           <h1
             ref={heading2Ref}
             style={{
-              fontSize: "3rem",
+              fontSize: "clamp(1.6rem, 4vw, 3rem)",
               marginBottom: "1rem",
               opacity: 0,
             }}
@@ -154,7 +154,7 @@ export default function Div2() {
           <p
             ref={secondParaRef}
             style={{
-              fontSize: "2.2rem",
+              fontSize: "clamp(1rem, 2.5vw, 2.2rem)",
               lineHeight: "1.0",
               color: "rgba(255, 255, 255, 0.5)",
               opacity: 0,

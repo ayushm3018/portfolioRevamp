@@ -1,9 +1,10 @@
 import Spline from "@splinetool/react-spline";
 import { useEffect, useRef } from "react";
 
-export default function SplineScene() {
+export default function SplineScene({ mobile = false }) {
   const containerRef = useRef();
   useEffect(() => {
+    if (mobile) return;
     let rafId = null;
 
     const handleScroll = () => {
@@ -24,7 +25,7 @@ export default function SplineScene() {
       window.removeEventListener("scroll", handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, []);
+  }, [mobile]);
 
   return (
     <div

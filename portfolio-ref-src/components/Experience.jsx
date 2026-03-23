@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -72,6 +72,13 @@ const experiences = [
 ];
 
 const Experience = () => {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
+  }, []);
+
   const sectionRef = useRef(null);
   const lineRef = useRef(null);
   const cardRefs = useRef([]);
@@ -202,22 +209,24 @@ const Experience = () => {
       {/* Timeline */}
       <div className="relative max-w-5xl mx-auto">
 
-        {/* Vertical line */}
-        <div
-          className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
-          style={{ width: "2px", background: "#1a1a1a" }}
-        >
+        {/* Vertical line — desktop only */}
+        {!isMobile && (
           <div
-            ref={lineRef}
-            style={{
-              width: "100%",
-              height: "100%",
-              background: "linear-gradient(to bottom, #7042f8, #b49bff)",
-              transformOrigin: "top center",
-              scaleY: 0,
-            }}
-          />
-        </div>
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2"
+            style={{ width: "2px", background: "#1a1a1a" }}
+          >
+            <div
+              ref={lineRef}
+              style={{
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(to bottom, #7042f8, #b49bff)",
+                transformOrigin: "top center",
+                scaleY: 0,
+              }}
+            />
+          </div>
+        )}
 
         {/* Cards */}
         {experiences.map((exp, index) => {
@@ -226,13 +235,13 @@ const Experience = () => {
             <div
               key={index}
               className="relative flex items-center mb-16"
-              style={{ justifyContent: isLeft ? "flex-start" : "flex-end" }}
+              style={{ justifyContent: isMobile ? "center" : (isLeft ? "flex-start" : "flex-end") }}
             >
               {/* Card */}
               <div
                 ref={el => (cardRefs.current[index] = el)}
                 style={{
-                  width: "44%",
+                  width: isMobile ? "92%" : "44%",
                   background: `hsl(${260 - index * 6}, 14%, ${8 + index * 1.5}%)`,
                   border: "1px solid #2a2a2a",
                   borderRadius: "1rem",
@@ -288,8 +297,8 @@ const Experience = () => {
                 </div>
               </div>
 
-              {/* Timeline dot */}
-              <div
+              {/* Timeline dot — desktop only */}
+              {!isMobile && <div
                 className="absolute left-1/2 -translate-x-1/2"
                 style={{ zIndex: 10 }}
               >
@@ -316,10 +325,10 @@ const Experience = () => {
                     border: "2px solid #444",
                   }}
                 />
-              </div>
+              </div>}
 
-              {/* Hidden messages scattered on opposite side */}
-              <div
+              {/* Hidden messages — desktop only */}
+              {!isMobile && <div
                 ref={el => (msgContainerRefs.current[index] = el)}
                 style={{
                   position: "absolute",
@@ -373,10 +382,10 @@ const Experience = () => {
                     {msg.text}
                   </span>
                 ))}
-              </div>
+              </div>}
 
-              {/* Horizontal connector from dot to card */}
-              <div
+              {/* Horizontal connector — desktop only */}
+              {!isMobile && <div
                 style={{
                   position: "absolute",
                   top: "50%",
@@ -386,7 +395,7 @@ const Experience = () => {
                   background: "#2a2a2a",
                   transform: "translateY(-50%)",
                 }}
-              />
+              />}
             </div>
           );
         })}
