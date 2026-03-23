@@ -198,7 +198,7 @@ const StatBar = ({ label, count, total, color }) => {
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${pct}%` }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="h-full rounded-full"
           style={{ background: color }}
@@ -247,7 +247,7 @@ const LeetCode = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.5 }}
         className="text-center mb-14"
       >
@@ -272,21 +272,15 @@ const LeetCode = () => {
         )}
 
         {data && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
+          <div className="space-y-6">
             {/* Row 1 — problems + contest */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
               >
                 <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-4">Problems Solved</p>
                 <div className="flex items-end gap-3 mb-6">
@@ -301,9 +295,9 @@ const LeetCode = () => {
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+                className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
               >
                 <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-4">Contest Rating</p>
                 <div className="flex items-end gap-3 mb-4">
@@ -318,9 +312,9 @@ const LeetCode = () => {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-              className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)" }}
+              className="rounded-2xl p-6 border border-[#2a2a2a]" style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
             >
               {/* Year tabs */}
               <div className="flex gap-2 mb-5">
@@ -370,17 +364,17 @@ const LeetCode = () => {
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                   className="rounded-2xl p-5 border border-[#2a2a2a] text-center"
-                  style={{ background: "hsl(260,14%,8%)" }}
+                  style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
                 >
                   <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-2">{stat.label}</p>
                   <p className="text-2xl font-bold text-white">{stat.value}</p>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>
