@@ -4,4 +4,4 @@
   publish = "dist"
 
 [functions]
-  directory = "netlify/functions"
+  directory = "portfolio-ref-src/netlify/functions"
