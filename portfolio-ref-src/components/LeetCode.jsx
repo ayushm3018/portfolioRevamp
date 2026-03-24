@@ -2,11 +2,9 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const USERNAME = "rayuga3018";
-const PROXY = "https://corsproxy.io/?";
-const GQL_URL = "https://leetcode.com/graphql";
 
 const gqlFetch = async (query) => {
-  const res = await fetch(`${PROXY}${encodeURIComponent(GQL_URL)}`, {
+  const res = await fetch("/.netlify/functions/leetcode", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
