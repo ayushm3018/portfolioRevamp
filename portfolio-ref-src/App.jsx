@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Div2 from "./assets/Div2";
 import Heading from "./assets/Heading";
 import Navbar from "./assets/Navbar";
@@ -8,9 +9,11 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import LeetCode from "./components/LeetCode";
 import SplineScene from "./assets/SplineScene";
+import Loader from "./components/Loader";
 
 function App() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth < 768);
@@ -20,6 +23,10 @@ function App() {
 
   return (
     <>
+      <AnimatePresence>
+        {!loaded && <Loader />}
+      </AnimatePresence>
+
       <Navbar />
       <Heading />
 
@@ -27,7 +34,7 @@ function App() {
         /* Mobile: Spline fills screen then scrolls away naturally */
         <>
           <div style={{ height: "100vh" }}>
-            <SplineScene mobile />
+            <SplineScene mobile onLoad={() => setLoaded(true)} />
           </div>
           <Div2 />
         </>
@@ -35,7 +42,7 @@ function App() {
         /* Desktop: Spline is sticky, Div2 overlays on scroll */
         <div>
           <div style={{ position: "sticky", top: 0, height: "100vh", zIndex: 1 }}>
-            <SplineScene />
+            <SplineScene onLoad={() => setLoaded(true)} />
           </div>
           <div style={{ position: "relative", zIndex: 2, pointerEvents: "none" }}>
             <Div2 />

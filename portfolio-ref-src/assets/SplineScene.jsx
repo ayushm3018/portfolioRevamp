@@ -1,7 +1,7 @@
 import Spline from "@splinetool/react-spline";
 import { useEffect, useRef } from "react";
 
-export default function SplineScene({ mobile = false }) {
+export default function SplineScene({ mobile = false, onLoad }) {
   const containerRef = useRef();
   useEffect(() => {
     if (mobile) return;
@@ -48,7 +48,10 @@ export default function SplineScene({ mobile = false }) {
           transformOrigin: "center center",
         }}
       >
-        <Spline scene="https://prod.spline.design/Jp1nG6e1zg5iTPrY/scene.splinecode" />
+        <Spline
+          scene="https://prod.spline.design/Jp1nG6e1zg5iTPrY/scene.splinecode"
+          onLoad={onLoad}
+        />
       </div>
     </div>
   );
