@@ -1,7 +1,4 @@
 [build]
-  base = "portfolio-ref-src"
-  command = "npm run build"
-  publish = "dist"
-
-[functions]
-  directory = "portfolio-ref-src/netlify/functions"
+  command = "npm --prefix portfolio-ref-src run build"
+  publish = "portfolio-ref-src/dist"
+  functions = "netlify/functions"
