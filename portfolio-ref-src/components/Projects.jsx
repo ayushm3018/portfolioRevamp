@@ -7,7 +7,7 @@ const projects = [
     title: "DelhiMart",
     subtitle: "E-Commerce SPA",
     url: "https://delhimart.netlify.app/",
-    description: "A client-side e-commerce SPA implementing end-to-end shopping flows — cart, checkout, wishlist, order tracking, PIN code-based delivery, and multi-criteria filtering across 60+ products.",
+    description: "A client-side e-commerce SPA implementing end-to-end shopping flows, cart, checkout, wishlist, order tracking, PIN code-based delivery, and multi-criteria filtering across 60+ products.",
     tags: ["React 18", "Vite 5", "Tailwind CSS", "React Router DOM", "Context API", "useReducer"],
   },
   {
@@ -15,7 +15,7 @@ const projects = [
     title: "SocialVibe",
     subtitle: "Social Media Platform",
     url: "https://socialvibee.netlify.app/",
-    description: "A full-featured client-side social media platform with auth flows, infinite scroll feeds, stories, DMs, and debounced search.",
+    description: "A full-featured client-side social media platform with auth flows, infinite scroll feeds, stories, DMs, and debounced search, with localStorage based persistence across sessions.",
     tags: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Context API"],
   },
 ];
