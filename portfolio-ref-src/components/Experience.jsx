@@ -31,42 +31,47 @@ const hiddenMessages = [
 
 const experiences = [
   {
-    title: "Senior Frontend Developer",
-    company: "Creative Digital Studio",
-    period: "2023 - Present",
+    title: "Co-founder & Product Lead (Former)",
+    company: "Doodliee",
+    period: "Aug 2025 – Jan 2026",
     description:
-      "Leading high-performance web apps with modern React architecture. Spearheaded migration to Next.js and implemented advanced optimization techniques.",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      "Led product development for an HTML5-based drawing platform, owning feature direction, user experience, and growth strategy. Collaborated closely with developers to deliver feedback-driven improvements and scale user adoption.",
+    coreCompetencies: [
+      "Product Strategy",
+      "User Feedback Analysis",
+      "Community Growth & Engagement",
+      "Feature Prioritization & Testing"
+    ],
     achievements: [
-      "Improved page load time by 45% through code splitting",
-      "Built reusable component library used across 10+ projects",
-      "Mentored 3 junior developers on modern React patterns",
+      "Translated user insights into clear technical requirements across iterative deployment cycles",
+      "Scaled platform from 12 → 450+ active users across 26 countries via product-led growth and engagement initiatives"
+    ]
+  },
+  {
+    title: "Software Development Intern",
+    company: "American Business Solutions Inc. (Remote)",
+    period: "Aug 2024 – Nov 2024",
+    description:
+      "Worked on building and enhancing a role-based dashboard system, focusing on frontend development, state management, and integration with backend services.",
+    technologies: ["React", "Redux", "Material-UI", "Node.js", "MongoDB", "Nodemailer"],
+    achievements: [
+      "Built responsive, role-based dashboards for employees and admins using React, Material-UI, and Redux for state management",
+      "Implemented login, attendance, and task assignment forms with React Hook Form for validation and error handling",
+      "Integrated backend APIs using Node.js and MongoDB for task and attendance tracking",
+      "Set up automated email notifications using Nodemailer and documented feature flows for the team"
     ],
   },
   {
-    title: "Full Stack Developer",
-    company: "Tech Solutions Co.",
-    period: "2021 - 2023",
+    title: "Technical Analyst Intern",
+    company: "Telecommunications Consultants India Ltd. (TCIL)",
+    period: "Jul 2025 – Aug 2025",
     description:
-      "Built full-stack applications using the MERN stack, implementing complex features and ensuring seamless frontend–backend integration.",
-    technologies: ["React", "Node.js", "MongoDB", "Express.js", "PostgreSQL"],
+      "Assisted in onboarding telecom solutions, acting as liaison between clients, vendors, and technical teams in a fast-paced enterprise environment.",
+    technologies: ["Technical Documentation", "Data Analysis", "Stakeholder Communication"],
     achievements: [
-      "Built 5 production apps serving 50,000+ active users",
-      "Real-time WebSocket features reducing server load by 30%",
-      "Automated deployments cutting release time from 4h to 15min",
-    ],
-  },
-  {
-    title: "Junior Web Developer",
-    company: "Startup Hub Inc.",
-    period: "2020 - 2021",
-    description:
-      "Started my development journey building responsive web apps and participating in agile cycles.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "React", "Firebase"],
-    achievements: [
-      "Completed 8 projects from concept to deployment",
-      "Expertise in responsive design and cross-browser compatibility",
-      "Contributed to open-source and client portfolio sites",
+      "Tracked and triaged technical issues, collaborating with engineers to improve resolution time",
+      "Prepared consolidated project updates and presented weekly to internal team",
+      "Assisted in documenting requirements and tracking technical updates across projects",
     ],
   },
 ];
