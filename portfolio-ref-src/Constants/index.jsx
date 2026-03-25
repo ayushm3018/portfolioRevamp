@@ -15,11 +15,11 @@ export const Backend_skill = [
   { skill_name: "Mongo db", Image: "/mongodb.png", width: 40, height: 40 },
   { skill_name: "My SQL", Image: "/mysql.png", width: 70, height: 70 },
   { skill_name: "GraphQL", Image: "/graphql.png", width: 80, height: 80 },
-  { skill_name: "Fire base", Image: "/Firebase.png", width: 55, height: 55 },
-  { skill_name: "JWT", Image: "/JWT.png", width: 70, height: 70 },
 ];
 
 export const Full_stack = [
+  { skill_name: "Fire base", Image: "/Firebase.png", width: 55, height: 55 },
+  { skill_name: "JWT", Image: "/JWT.png", width: 70, height: 70 },
   { skill_name: "Docker", Image: "/docker.webp", width: 70, height: 70 },
   { skill_name: "Redux", Image: "/redux.png", width: 80, height: 80 },
   { skill_name: "React Query", Image: "/reactquery.png", width: 80, height: 80 },
