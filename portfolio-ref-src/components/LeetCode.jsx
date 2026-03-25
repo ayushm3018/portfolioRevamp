@@ -367,8 +367,8 @@ const LeetCode = () => {
                   className="rounded-2xl p-5 border border-[#2a2a2a] text-center"
                   style={{ background: "hsl(260,14%,8%)", position: "relative", zIndex: 1 }}
                 >
-                  <p className="text-xs text-[#7042f8] uppercase tracking-widest mb-2">{stat.label}</p>
-                  <p className="text-2xl font-bold text-white">{stat.value}</p>
+                  <p className="text-[10px] md:text-xs text-[#7042f8] uppercase tracking-widest mb-2">{stat.label}</p>
+                  <p className="text-base md:text-2xl font-bold text-white">{stat.value}</p>
                 </motion.div>
               ))}
             </div>

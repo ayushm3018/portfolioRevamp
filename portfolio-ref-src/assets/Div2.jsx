@@ -112,14 +112,11 @@ export default function Div2() {
               opacity: 0,
             }}
           >
-            I'm a passionate developer with a love for creating immersive
-            digital experiences. My journey in tech began with a curiosity about
-            how things work, which evolved into a career building innovative
-            solutions. I specialize in web development, 3D graphics, and
-            interactive applications that push the boundaries of what's possible
-            on the web. When I'm not coding, you can find me exploring new
-            technologies, contributing to open-source projects, or sharing my
-            knowledge with the community.
+            I build scalable backend systems and full-stack applications using
+            strong data structures and algorithms, focusing on solving real user
+            problems efficiently. My approach combines algorithmic thinking with
+            product awareness—understanding what to build, why it matters, and
+            how it performs at scale.
           </p>
         </div>
       </div>
@@ -160,10 +157,10 @@ export default function Div2() {
               opacity: 0,
             }}
           >
-            With expertise in modern frameworks and technologies, I build
-            responsive, interactive, and user-friendly applications. My approach
-            combines technical excellence with creative problem-solving to
-            deliver exceptional digital experiences.
+            I use modern web technologies to build systems that are not only
+            functional, but intuitive and reliable. My work focuses on efficient
+            data handling, clear API design, and making decisions that improve
+            usability while keeping the system scalable.
           </p>
           <style jsx="true">{`
             .cursor {
