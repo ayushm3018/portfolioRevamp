@@ -6,7 +6,7 @@ import {
   Other_skill,
 } from "../Constants";
 
-const allSkills = [...Frontend_skill, ...Backend_skill, ...Full_stack, ...Other_skill];
+const skillRows = [Frontend_skill, Backend_skill, Full_stack, Other_skill];
 
 const containerVariants = {
   hidden: {},
@@ -46,30 +46,35 @@ const Skills = () => {
           </h2>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, amount: 0.1 }}
-          className="flex flex-wrap justify-center gap-8"
-        >
-          {allSkills.map((skill, index) => (
+        <div className="flex flex-col gap-8">
+          {skillRows.map((row, rowIndex) => (
             <motion.div
-              key={index}
-              variants={iconVariants}
-              whileHover={{ scale: 1.15, y: -4 }}
-              className="flex items-center justify-center"
+              key={rowIndex}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.1 }}
+              className="flex flex-wrap justify-center gap-8"
             >
-              <img
-                src={skill.Image}
-                alt={skill.skill_name}
-                width={skill.width}
-                height={skill.height}
-                style={{ width: skill.width, height: skill.height, objectFit: "contain" }}
-              />
+              {row.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  variants={iconVariants}
+                  whileHover={{ scale: 1.15, y: -4 }}
+                  className="flex items-center justify-center"
+                >
+                  <img
+                    src={skill.Image}
+                    alt={skill.skill_name}
+                    width={skill.width}
+                    height={skill.height}
+                    style={{ width: skill.width, height: skill.height, objectFit: "contain" }}
+                  />
+                </motion.div>
+              ))}
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
