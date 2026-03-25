@@ -1,4 +1,4 @@
 [build]
-  command = "npm --prefix portfolio-ref-src run build"
+  command = "npm --prefix portfolio-ref-src install && npm --prefix portfolio-ref-src run build"
   publish = "portfolio-ref-src/dist"
   functions = "netlify/functions"
