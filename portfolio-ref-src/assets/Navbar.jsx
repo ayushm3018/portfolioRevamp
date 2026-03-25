@@ -25,9 +25,8 @@ export default function Navbar() {
         </li>
         <li>
           <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Ayush_Resume.pdf"
+            download="Ayush_Mishra_Resume.pdf"
           >
             Resume
           </a>

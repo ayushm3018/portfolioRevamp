@@ -7,6 +7,7 @@ import ParticlesBackground from "./assets/ParticlesBackground";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
+import Community from "./components/Community";
 import LeetCode from "./components/LeetCode";
 import SplineScene from "./assets/SplineScene";
 import Loader from "./components/Loader";
@@ -54,6 +55,7 @@ function App() {
       <Skills />
       <Projects />
       <Experience />
+      <Community />
       <LeetCode />
       <footer style={{
         textAlign: "center",
