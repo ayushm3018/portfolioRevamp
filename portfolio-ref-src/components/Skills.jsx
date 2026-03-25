@@ -65,7 +65,6 @@ const Skills = () => {
                 alt={skill.skill_name}
                 width={skill.width}
                 height={skill.height}
-                loading="lazy"
                 style={{ width: skill.width, height: skill.height, objectFit: "contain" }}
               />
             </motion.div>
