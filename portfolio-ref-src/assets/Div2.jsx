@@ -112,11 +112,7 @@ export default function Div2() {
               opacity: 0,
             }}
           >
-            I build scalable backend systems and full-stack applications using
-            strong data structures and algorithms, focusing on solving real user
-            problems efficiently. My approach combines algorithmic thinking with
-            product awareness—understanding what to build, why it matters, and
-            how it performs at scale.
+            I build scalable systems, full-stack applications. With a strong foundation in data structures and algorithms, I focus on solving real-world problems with efficiency and clarity, balancing algorithmic rigor with product intuition. My work is driven not just by how systems are built, but why they matter and how they perform under scale.
           </p>
         </div>
       </div>
