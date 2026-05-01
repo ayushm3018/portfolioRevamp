@@ -1,16 +1,77 @@
-# React + Vite
+# Ayush Mishra — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+My personal portfolio site. Built with React 19 + Vite, with WebGL 3D, GSAP scroll animations, and a few custom canvas effects.
 
-Currently, two official plugins are available:
+**Live:** [ayush-mishra.com](https://ayush-mishra.com/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- **Framework:** React 19, Vite 6
+- **Styling:** Tailwind CSS v4
+- **Animation:** GSAP + ScrollTrigger, Framer Motion
+- **3D / WebGL:** Spline, React Three Fiber, Three.js
+- **Particles:** tsparticles + custom canvas particle systems
+- **Routing:** React Router v7
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Sticky 3D Spline hero scene with scroll-driven transforms
+- Typing intro section synced to scroll progress
+- Interactive `</>` particle field — particles scatter from cursor and spring back like water
+- Live iframe project previews
+- GSAP-animated experience timeline
+- LeetCode stats with heatmap and rating chart
+- Full SEO setup (Open Graph, Twitter Cards, JSON-LD, sitemap, robots.txt)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Sections
+
+| Section | What it does |
+|---|---|
+| `Hero / SplineScene` | Spline 3D scene, sticky on desktop |
+| `Div2` | Scroll-synced typing intro |
+| `Skills` | Framer Motion skill icon grid |
+| `Projects` | Project cards with live iframe previews |
+| `Experience` | GSAP ScrollTrigger timeline |
+| `Community` | Custom canvas particle text + leadership cards |
+| `LeetCode` | Stats, heatmap, rating chart |
+
+## Getting Started
+
+```bash
+# install
+npm install
+
+# dev
+npm run dev
+
+# build
+npm run build
+
+# preview build
+npm run preview
+
+# lint
+npm run lint
+```
+
+## Project Structure
+
+```
+portfolio-ref-src/
+├── assets/              # Hero, Navbar, Spline, particles, typing
+├── components/          # Skills, Projects, Experience, Community, LeetCode, Loader
+├── Constants/           # Static data
+├── public/              # OG image, robots.txt, sitemap.xml
+├── App.jsx              # Layout + mobile/desktop switch
+├── index.html           # SEO meta, OG, JSON-LD
+└── vite.config.js
+```
+
+## Deployment
+
+Deployed on Netlify. `netlify.toml` lives in the parent repo root.
+
+## Contact
+
+- **Site:** [ayush-mishra.com](https://ayush-mishra.com/)
+- **Email:** ayushmishra3018@gmail.com
