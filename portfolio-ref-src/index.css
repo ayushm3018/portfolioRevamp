@@ -5,13 +5,6 @@ body{
   color: white;
 }
 
-/* Lenis needs this so it can measure the document; the rest of lenis.css is
-   deliberately omitted (see assets/useSmoothScroll.js). */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
 @keyframes rotateCube {
   from { transform: rotateX(0deg) rotateY(0deg); }
   to   { transform: rotateX(360deg) rotateY(360deg); }
