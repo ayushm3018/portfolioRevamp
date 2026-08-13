@@ -5,6 +5,7 @@ import Heading from "./assets/Heading";
 import Navbar from "./assets/Navbar";
 import ParticlesBackground from "./assets/ParticlesBackground";
 import SocialRail from "./assets/SocialRail";
+import useSmoothScroll from "./assets/useSmoothScroll";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
@@ -16,6 +17,8 @@ import Loader from "./components/Loader";
 function App() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const [loaded, setLoaded] = useState(false);
+
+  useSmoothScroll();
 
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth < 768);
