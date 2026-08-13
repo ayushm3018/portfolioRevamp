@@ -1,0 +1,110 @@
+/* Fixed social rail — left edge, vertically centred. Unlike the navbar it never
+   collapses: the buttons and their icons are always visible, and hover only
+   lights them up. */
+.social-rail {
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 1000;
+}
+
+.social-rail a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px);
+  transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.social-rail a:hover {
+  color: #b49bff;
+  border-color: #7042f8;
+  box-shadow: 0 0 14px rgba(112, 66, 248, 0.45);
+  transform: translateX(3px);
+}
+
+/* Name slides out to the right of the button on hover. */
+.social-rail a::after {
+  content: attr(data-label);
+  position: absolute;
+  left: calc(100% + 10px);
+  padding: 4px 10px;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(112, 66, 248, 0.5);
+  color: #b49bff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  pointer-events: none;
+}
+
+.social-rail a:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* 1280px, not the usual 768px: the breakpoint here is geometric, not a device
+   size. The widest section container is max-w-6xl (1152px), so the gutter only
+   clears the 64px-wide rail once the viewport passes 1152 + 2*64 = 1280. Below
+   that the rail measurably covers the leftmost project card and the experience
+   timeline, so it collapses into a bottom-centre pill rather than hiding —
+   otherwise these links would be unreachable on a phone entirely. */
+@media (max-width: 1279px) {
+  .social-rail {
+    left: 50%;
+    top: auto;
+    bottom: 16px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+  }
+
+  .social-rail a {
+    width: 34px;
+    height: 34px;
+    background: transparent;
+    border-color: transparent;
+    backdrop-filter: none;
+  }
+
+  .social-rail a:hover {
+    transform: none;
+  }
+
+  .social-rail a::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-rail a,
+  .social-rail a::after {
+    transition: none;
+  }
+
+  .social-rail a:hover {
+    transform: none;
+  }
+}

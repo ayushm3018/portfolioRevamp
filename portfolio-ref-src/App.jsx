@@ -4,6 +4,7 @@ import Div2 from "./assets/Div2";
 import Heading from "./assets/Heading";
 import Navbar from "./assets/Navbar";
 import ParticlesBackground from "./assets/ParticlesBackground";
+import SocialRail from "./assets/SocialRail";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Experience from "./components/Experience";
@@ -30,6 +31,7 @@ function App() {
       </AnimatePresence>
 
       <Navbar />
+      <SocialRail />
       <main>
       <Heading />
 

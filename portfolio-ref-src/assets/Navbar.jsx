@@ -19,15 +19,6 @@ export default function Navbar() {
         </li>
         <li>
           <a
-            href="https://www.linkedin.com/in/ayushmishra02/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-        </li>
-        <li>
-          <a
             href="/Ayush_Resume.pdf"
             download="Ayush_Mishra_Resume.pdf"
           >
