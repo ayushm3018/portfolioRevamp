@@ -32,7 +32,7 @@ export const projects = [
   {
     id: 3,
     title: "Assessly",
-    subtitle: "AI Interview Platform",
+    subtitle: "AI-Proctored Interview Platform",
     year: 2026,
     live: "https://assessly.ddnsgeek.com/",
     github: null,
@@ -40,8 +40,8 @@ export const projects = [
     poster: "/posters/assessly.jpg",
     posterAspect: "16/10",
     description:
-      "An AI mock-interview platform that adapts questions to your level, cross-questions your answers, and returns a scored report. Records responses in-browser, watches for a second person via MediaPipe, and exports the report as a PDF.",
-    tags: ["React", "Firebase Auth", "MediaPipe", "Recharts", "Razorpay", "jsPDF"],
+      "An AI mock-interview platform that grounds its questions in your resume and injects follow-ups from your own answers, driven by DeepSeek V3, with a low-latency Deepgram voice pipeline and MediaPipe proctoring.",
+    tags: ["React 19", "Node.js", "MongoDB", "DeepSeek V3", "Deepgram", "MediaPipe"],
   },
   {
     id: 5,
@@ -55,13 +55,13 @@ export const projects = [
     poster: "/posters/bankledger.png",
     posterAspect: "16/10",
     description:
-      "A production-style banking API modeled on real payment systems: paired DEBIT/CREDIT rows so balances are derived and can never drift, idempotency keys that make a retried transfer safe, and ACID transactions that roll back atomically on failure.",
-    tags: ["Node.js", "Express", "MongoDB", "Mongoose", "JWT", "OpenAPI"],
+      "A production-style banking API where balances are derived from MongoDB aggregation pipelines so they can never drift, idempotent transfers make a retry safe, and ACID transactions prevent double-spending.",
+    tags: ["Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "Nodemailer"],
   },
   {
     id: 4,
     title: "CodeSync",
-    subtitle: "Collaborative Code Editor",
+    subtitle: "Multiplayer IDE",
     year: 2026,
     live: "https://code-sync.duckdns.org/",
     github: null,
@@ -69,8 +69,8 @@ export const projects = [
     poster: "/posters/codesync.jpg",
     posterAspect: "16/10",
     description:
-      "A real-time collaborative editor where several people edit one file with zero conflicts, backed by Y.js CRDTs over Socket.IO. Ships a Gemini-powered assistant, in-browser execution across 15+ languages, and highlighting for 50+.",
-    tags: ["React", "Monaco Editor", "Y.js CRDT", "Socket.IO", "Gemini API"],
+      "A multiplayer IDE where several people edit one file with zero conflicts, backed by Yjs CRDTs over Socket.io. Runs code in sandboxed Docker containers across 12 languages, with a Gemini pair-programmer built in.",
+    tags: ["React", "Yjs CRDT", "Socket.io", "Redis", "Docker", "Gemini API"],
   },
   {
     id: 1,
